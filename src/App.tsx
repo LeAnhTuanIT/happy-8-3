@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import './App.css'
 import Petals from './components/Petals'
-import SparkleTrail from './components/SparkleTrail'
 import { wishes } from './data/wishes'
 
 const youtubePlaylist = [
@@ -20,24 +19,12 @@ function App() {
   const [, setUsedIndices] = useState<number[]>([])
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
   const [hasStarted, setHasStarted] = useState<boolean>(false)
-  const [isOpening, setIsOpening] = useState<boolean>(false)
   const [selectedVideoId, setSelectedVideoId] = useState<string>('')
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-  const [clicks, setClicks] = useState<{id: number, x: number, y: number}[]>([])
   const playerRef = useRef<any>(null);
 
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * youtubePlaylist.length);
     setSelectedVideoId(youtubePlaylist[randomIndex]);
-
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({
-        x: (e.clientX / window.innerWidth - 0.5) * 15,
-        y: (e.clientY / window.innerHeight - 0.5) * 15
-      });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   useEffect(() => {
@@ -84,82 +71,58 @@ function App() {
     }
   }, [hasStarted]);
 
-  const handleScreenClick = (e: React.MouseEvent) => {
-    if (!hasStarted) return;
-    const newClick = { id: Date.now(), x: e.clientX, y: e.clientY };
-    setClicks(prev => [...prev, newClick]);
-    setTimeout(() => {
-      setClicks(prev => prev.filter(c => c.id !== newClick.id));
-    }, 1500);
-  }
-
   const startExperience = () => {
-    setIsOpening(true);
-    setTimeout(() => {
-      setHasStarted(true);
-      setIsPlaying(true);
-      if (playerRef.current) {
-        playerRef.current.unMute();
-        playerRef.current.playVideo();
-      }
-    }, 1500);
+    setHasStarted(true);
+    setIsPlaying(true);
+    if (playerRef.current) {
+      playerRef.current.unMute();
+      playerRef.current.playVideo();
+    }
   }
 
   return (
-    <div className="app-container" onClick={handleScreenClick}>
-      <SparkleTrail />
-      
-      {clicks.map(click => (
-        <div key={click.id} className="click-bloom" style={{ left: click.x, top: click.y }}>
-          🌸
-        </div>
-      ))}
-
+    <div className="app-container">
       {!hasStarted && (
-        <div className={`welcome-screen ${isOpening ? 'opening' : ''}`} onClick={startExperience}>
-          <div className="luxury-intro">
-            <div className="reveal-text">Gửi ngàn yêu thương</div>
-            <div className="main-reveal">PHỤ NỮ TUYỆT VỜI</div>
-            <div className="click-to-begin">CHẠM ĐỂ MỞ HỘP QUÀ</div>
+        <div className="minimal-start" onClick={startExperience}>
+          <div className="start-content">
+            <span className="upper-text">International Women's Day</span>
+            <h2 className="start-title">The Gift of Grace</h2>
+            <button className="enter-button">Enter Experience</button>
           </div>
-          <div className="floating-glow"></div>
         </div>
       )}
 
-      <div className="video-background" style={{ transform: `translate(${-mousePos.x}px, ${-mousePos.y}px) scale(1.15)` }}>
+      <div className="video-background">
         <div id="youtube-player"></div>
-        <div className="video-blur-overlay"></div>
+        <div className="video-overlay-clean"></div>
       </div>
 
       {hasStarted && (
-        <div className="dreamy-content">
+        <div className="sophisticated-ui">
           <Petals />
-          <div className="orbs-container">
-            <div className="orb" style={{ width: '600px', height: '600px', top: '10%', left: '15%', transform: `translate(${mousePos.x * 2}px, ${mousePos.y * 2}px)` }}></div>
-            <div className="orb" style={{ width: '700px', height: '700px', bottom: '15%', right: '10%', transform: `translate(${-mousePos.x * 1.5}px, ${mousePos.y * 3}px)` }}></div>
-          </div>
-
-          <div className="wish-card" style={{ transform: `translate(${mousePos.x * 0.5}px, ${mousePos.y * 0.5}px)` }}>
-            <h1 className="main-title">Gửi bạn,</h1>
-            <div className="wish-display">
-              <p className="wish-sentence" key={currentWish}>
-                {currentWish.split(' ').map((word, i) => (
-                  <span key={i} style={{ animationDelay: `${i * 0.1}s` }}>{word}</span>
-                ))}
+          
+          <div className="content-frame">
+            <h1 className="header-label">Gửi bạn,</h1>
+            <div className="wish-wrapper">
+              <p className="wish-text-final" key={currentWish}>
+                {currentWish}
               </p>
             </div>
+            <div className="line-accent"></div>
           </div>
 
-          <button className="sound-toggle" onClick={(e) => {
-            e.stopPropagation();
-            if (playerRef.current) {
-              if (isPlaying) playerRef.current.mute();
-              else playerRef.current.unMute();
-              setIsPlaying(!isPlaying);
-            }
-          }}>
-            {isPlaying ? 'SOUND ON' : 'SOUND OFF'}
-          </button>
+          <div className="footer-minimal">
+            <span>2026 Edition</span>
+            <div className="audio-control-clean" onClick={() => {
+              if (playerRef.current) {
+                if (isPlaying) playerRef.current.mute();
+                else playerRef.current.unMute();
+                setIsPlaying(!isPlaying);
+              }
+            }}>
+              {isPlaying ? 'MUTE AUDIO' : 'PLAY AUDIO'}
+            </div>
+          </div>
         </div>
       )}
     </div>

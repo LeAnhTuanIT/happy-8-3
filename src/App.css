@@ -1,7 +1,7 @@
 :root {
-  --text-primary: #ffffff;
-  --accent-pink: #ffb7c5;
-  --gold-dust: rgba(255, 215, 0, 0.4);
+  --ivory: #f8f9fa;
+  --gold: #c5a059;
+  --dark-base: #0a0a0a;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -10,110 +10,74 @@ body, html {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: #000;
+  background-color: var(--dark-base);
   font-family: 'Montserrat', sans-serif;
-  cursor: none;
+  color: var(--ivory);
 }
 
 .app-container {
   position: relative;
   width: 100%;
   height: 100vh;
-  overflow: hidden;
-  background: #000;
 }
 
-/* --- CINEMATIC WELCOME SCREEN --- */
-.welcome-screen {
+/* --- MINIMAL START --- */
+.minimal-start {
   position: fixed;
   inset: 0;
-  background: black;
+  background: var(--dark-base);
+  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2000;
   cursor: pointer;
-  transition: all 2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.welcome-screen.opening {
-  opacity: 0;
-  transform: scale(1.5);
-  filter: blur(50px);
-  pointer-events: none;
-}
-
-.luxury-intro {
+.start-content {
   text-align: center;
-  z-index: 2010;
-  padding: 0 2rem;
+  max-width: 400px;
 }
 
-.reveal-text {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1rem, 3vw, 1.8rem);
-  letter-spacing: 0.8em;
-  color: var(--accent-pink);
+.upper-text {
+  font-size: 0.6rem;
+  letter-spacing: 0.6em;
   text-transform: uppercase;
-  margin-bottom: 2rem;
-  opacity: 0;
-  animation: revealUp 2s forwards 0.5s;
+  opacity: 0.4;
+  display: block;
+  margin-bottom: 1.5rem;
 }
 
-.main-reveal {
+.start-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.5rem, 12vw, 8rem);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  line-height: 1;
-  background: linear-gradient(180deg, #fff 30%, var(--accent-pink) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 30px rgba(255, 183, 197, 0.3));
-  opacity: 0;
-  animation: revealUp 2.5s forwards 1s;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  letter-spacing: -0.02em;
 }
 
-.click-to-begin {
-  margin-top: 4rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.5em;
-  opacity: 0;
+.enter-button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
-  animation: fadeInOut 3s infinite 2s;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  padding-bottom: 10px;
-  display: inline-block;
+  padding: 1rem 2.5rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.4s;
 }
 
-@keyframes revealUp {
-  from { opacity: 0; transform: translateY(50px); filter: blur(20px); }
-  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+.enter-button:hover {
+  background: white;
+  color: black;
 }
 
-@keyframes fadeInOut {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 0.8; }
-}
-
-.floating-glow {
-  position: absolute;
-  width: 60vw;
-  height: 60vw;
-  background: radial-gradient(circle, rgba(255, 77, 109, 0.1) 0%, transparent 70%);
-  filter: blur(100px);
-  animation: glowMove 10s infinite alternate;
-}
-
-@keyframes glowMove {
-  from { transform: translate(-20%, -20%); }
-  to { transform: translate(20%, 20%); }
-}
-
-/* --- VIDEO BACKGROUND --- */
+/* --- VIDEO & OVERLAY --- */
 .video-background {
   position: absolute;
-  inset: -150px;
+  inset: 0;
   z-index: 1;
 }
 
@@ -121,115 +85,116 @@ body, html {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 160vw;
-  height: 160vh;
+  width: 120vw;
+  height: 120vh;
   transform: translate(-50%, -50%);
-  filter: saturate(0.5) brightness(0.2) blur(25px); /* Làm mờ video cực mạnh */
+  filter: saturate(0.2) brightness(0.3) blur(15px); /* Mờ và khử màu sang trọng */
 }
 
-.video-blur-overlay {
+.video-overlay-clean {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle, transparent 0%, rgba(0,0,0,0.95) 100%);
+  background: linear-gradient(to bottom, rgba(10,10,10,0.4), rgba(10,10,10,0.9));
   z-index: 2;
 }
 
-/* --- PETALS (MAX VISIBILITY) --- */
+/* --- SOPHISTICATED UI --- */
+.sophisticated-ui {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-frame {
+  max-width: 800px;
+  width: 90%;
+  text-align: center;
+  padding: 0 2rem;
+}
+
+.header-label {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  margin-bottom: 2.5rem;
+  opacity: 0.8;
+}
+
+.wish-wrapper {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wish-text-final {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  line-height: 1.8;
+  font-weight: 300;
+  color: var(--ivory);
+  opacity: 0;
+  animation: smoothReveal 1.5s forwards;
+}
+
+@keyframes smoothReveal {
+  from { opacity: 0; transform: translateY(10px); filter: blur(5px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+.line-accent {
+  width: 30px;
+  height: 1px;
+  background: var(--gold);
+  margin: 4rem auto 0;
+}
+
+/* --- FOOTER --- */
+.footer-minimal {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 0.3;
+}
+
+.audio-control-clean {
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.audio-control-clean:hover { opacity: 1; }
+
+/* --- PETALS (REFINED) --- */
 .petals-container-3d {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 100;
+  z-index: 5;
 }
 
 .petal-3d {
   position: absolute;
-  background: linear-gradient(135deg, #fff 0%, var(--accent-pink) 100%);
-  border-radius: 100% 0 100% 0;
-  opacity: 0.6;
-  box-shadow: 0 0 20px rgba(255, 183, 197, 0.4);
-  animation: fallDreamy linear infinite;
-  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
-}
-
-@keyframes fallDreamy {
-  0% { transform: translateY(-10vh) rotate(0deg) scale(0.5); opacity: 0; }
-  10% { opacity: 0.8; }
-  100% { transform: translateY(110vh) rotate(1080deg) scale(1.2) translateX(200px); opacity: 0; }
-}
-
-/* --- DREAMY CONTENT --- */
-.dreamy-content {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  z-index: 50;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.wish-card {
-  text-align: center;
-  max-width: 1000px;
-  width: 95%;
-  padding: 4rem;
-  z-index: 60;
-}
-
-.main-title {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: clamp(4rem, 12vw, 8rem);
-  color: #fff;
-  margin-bottom: 3rem;
-  letter-spacing: -0.02em;
-  text-shadow: 0 0 50px rgba(255, 255, 255, 0.3);
-}
-
-.wish-display {
-  min-height: 250px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-}
-
-.wish-sentence span {
-  display: inline-block;
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.8rem, 5vw, 3rem);
-  font-weight: 300;
-  line-height: 1.4;
-  color: var(--accent-pink);
-  opacity: 0;
-  filter: blur(20px);
-  animation: wordReveal 1.5s forwards cubic-bezier(0.16, 1, 0.3, 1);
-  margin-right: 0.4em;
-  text-shadow: 0 0 20px rgba(255, 183, 197, 0.5);
-}
-
-@keyframes wordReveal {
-  to { opacity: 1; filter: blur(0); transform: translateY(0); }
-}
-
-.sound-toggle {
-  position: absolute;
-  bottom: 60px;
-  right: 60px;
-  background: rgba(255, 255, 255, 0.05);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 15px 35px;
-  font-size: 0.7rem;
-  letter-spacing: 0.4em;
-  cursor: pointer;
-  backdrop-filter: blur(20px);
-  z-index: 150;
-  border-radius: 100px;
-}
-
-.sound-toggle:hover {
   background: white;
-  color: black;
+  border-radius: 100% 0 100% 0;
+  opacity: 0.15; /* Giảm opacity để cực kỳ tinh tế */
+  animation: fallRefined linear infinite;
+}
+
+@keyframes fallRefined {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.2; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
 }
