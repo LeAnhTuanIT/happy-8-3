@@ -29,26 +29,41 @@ function App() {
 
   useEffect(() => {
     if (!selectedVideoId) return;
+    
+    // Tải YouTube API nếu chưa có
     if (!window.YT) {
       const tag = document.createElement('script');
       tag.src = "https://www.youtube.com/iframe_api";
       const firstScriptTag = document.getElementsByTagName('script')[0];
       firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
     }
-    window.onYouTubeIframeAPIReady = () => loadPlayer(selectedVideoId);
-    if (window.YT && window.YT.Player) loadPlayer(selectedVideoId);
 
-    function loadPlayer(videoId: string) {
+    const initPlayer = () => {
       if (playerRef.current) playerRef.current.destroy();
       playerRef.current = new window.YT.Player('youtube-player', {
-        videoId: videoId,
+        videoId: selectedVideoId,
         playerVars: {
-          autoplay: 1, controls: 0, loop: 1, playlist: videoId,
-          modestbranding: 1, rel: 0, showinfo: 0, mute: 1
+          autoplay: 1,
+          controls: 0,
+          loop: 1,
+          playlist: selectedVideoId,
+          modestbranding: 1,
+          rel: 0,
+          showinfo: 0,
+          mute: 1,
+          origin: window.location.origin // Quan trọng để chạy ổn định trên domain thật
         },
-        events: { onReady: (e: any) => e.target.playVideo() }
+        events: {
+          onReady: (e: any) => {
+            e.target.playVideo();
+          }
+        }
       });
-    }
+    };
+
+    window.onYouTubeIframeAPIReady = initPlayer;
+    if (window.YT && window.YT.Player) initPlayer();
+
   }, [selectedVideoId]);
 
   const getNextWish = () => {
@@ -72,12 +87,16 @@ function App() {
   }, [hasStarted]);
 
   const startExperience = () => {
-    setHasStarted(true);
-    setIsPlaying(true);
-    if (playerRef.current) {
+    // 1. Unmute và Play ngay lập tức trong luồng xử lý click để vượt qua chính sách trình duyệt
+    if (playerRef.current && typeof playerRef.current.unMute === 'function') {
       playerRef.current.unMute();
+      playerRef.current.setVolume(100);
       playerRef.current.playVideo();
     }
+    
+    // 2. Cập nhật UI
+    setHasStarted(true);
+    setIsPlaying(true);
   }
 
   return (
