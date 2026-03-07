@@ -4,7 +4,9 @@ import Petals from './components/Petals'
 import { wishes } from './data/wishes'
 
 const youtubePlaylist = [
-  'tX73H2FRcK8', 'NPBCbTZWnq0', 'FoCG-WNsZio', 'GJWU2Y_tGRk'
+  'ZzRKtUK-hlw',
+  'RtcDdmP9pRg',
+  '_jJi6k3CThM'
 ];
 
 declare global {
