@@ -1,6 +1,6 @@
 {
   "buildCommand": "npm install && npm run build",
-  "outputDirectory": "happy-8-3/dist",
+  "outputDirectory": "dist",
   "framework": "vite",
   "rewrites": [
     {
