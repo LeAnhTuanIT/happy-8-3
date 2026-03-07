@@ -175,6 +175,8 @@ function App() {
 
   return (
     <div className="app-container">
+      <Petals />
+      
       {!hasStarted && (
         <div className="minimal-start" onClick={startExperience}>
           <div className="start-glow"></div>
@@ -205,7 +207,6 @@ function App() {
 
       {hasStarted && (
         <div className="sophisticated-ui">
-          <Petals />
           <SparkleTrail />
 
           <div className="letter-container">
