@@ -22,11 +22,22 @@ function App() {
   const [hasStarted, setHasStarted] = useState<boolean>(false)
   const [isOpening, setIsOpening] = useState<boolean>(false)
   const [selectedVideoId, setSelectedVideoId] = useState<string>('')
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+  const [clicks, setClicks] = useState<{id: number, x: number, y: number}[]>([])
   const playerRef = useRef<any>(null);
 
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * youtubePlaylist.length);
     setSelectedVideoId(youtubePlaylist[randomIndex]);
+
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({
+        x: (e.clientX / window.innerWidth - 0.5) * 15,
+        y: (e.clientY / window.innerHeight - 0.5) * 15
+      });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   useEffect(() => {
@@ -73,9 +84,17 @@ function App() {
     }
   }, [hasStarted]);
 
+  const handleScreenClick = (e: React.MouseEvent) => {
+    if (!hasStarted) return;
+    const newClick = { id: Date.now(), x: e.clientX, y: e.clientY };
+    setClicks(prev => [...prev, newClick]);
+    setTimeout(() => {
+      setClicks(prev => prev.filter(c => c.id !== newClick.id));
+    }, 1500);
+  }
+
   const startExperience = () => {
     setIsOpening(true);
-    // Chờ animation mở thư chạy xong rồi mới chuyển màn hình
     setTimeout(() => {
       setHasStarted(true);
       setIsPlaying(true);
@@ -87,25 +106,27 @@ function App() {
   }
 
   return (
-    <div className="app-container">
+    <div className="app-container" onClick={handleScreenClick}>
       <SparkleTrail />
+      
+      {clicks.map(click => (
+        <div key={click.id} className="click-bloom" style={{ left: click.x, top: click.y }}>
+          🌸
+        </div>
+      ))}
 
       {!hasStarted && (
         <div className={`welcome-screen ${isOpening ? 'opening' : ''}`} onClick={startExperience}>
-          <div className="envelope-wrapper">
-            <div className={`envelope ${isOpening ? 'open' : ''}`}>
-              <div className="flap"></div>
-              <div className="body"></div>
-              <div className="letter">
-                <div className="heart-seal">♥</div>
-              </div>
-            </div>
-            {!isOpening && <div className="open-hint">NHẤN ĐỂ MỞ THƯ 💌</div>}
+          <div className="luxury-intro">
+            <div className="reveal-text">Gửi ngàn yêu thương</div>
+            <div className="main-reveal">PHỤ NỮ TUYỆT VỜI</div>
+            <div className="click-to-begin">CHẠM ĐỂ MỞ HỘP QUÀ</div>
           </div>
+          <div className="floating-glow"></div>
         </div>
       )}
 
-      <div className="video-background">
+      <div className="video-background" style={{ transform: `translate(${-mousePos.x}px, ${-mousePos.y}px) scale(1.15)` }}>
         <div id="youtube-player"></div>
         <div className="video-blur-overlay"></div>
       </div>
@@ -113,31 +134,31 @@ function App() {
       {hasStarted && (
         <div className="dreamy-content">
           <Petals />
-          <div className="wish-card">
+          <div className="orbs-container">
+            <div className="orb" style={{ width: '600px', height: '600px', top: '10%', left: '15%', transform: `translate(${mousePos.x * 2}px, ${mousePos.y * 2}px)` }}></div>
+            <div className="orb" style={{ width: '700px', height: '700px', bottom: '15%', right: '10%', transform: `translate(${-mousePos.x * 1.5}px, ${mousePos.y * 3}px)` }}></div>
+          </div>
+
+          <div className="wish-card" style={{ transform: `translate(${mousePos.x * 0.5}px, ${mousePos.y * 0.5}px)` }}>
             <h1 className="main-title">Gửi bạn,</h1>
             <div className="wish-display">
               <p className="wish-sentence" key={currentWish}>
                 {currentWish.split(' ').map((word, i) => (
-                  <span key={i} style={{ animationDelay: `${i * 0.1}s` }}>{word}&nbsp;</span>
+                  <span key={i} style={{ animationDelay: `${i * 0.1}s` }}>{word}</span>
                 ))}
               </p>
             </div>
-            <div className="soft-divider"></div>
           </div>
 
-          <div className="bottom-info">
-            <div className="event-name">INTERNATIONAL WOMEN'S DAY</div>
-            <div className="year-mark">2026</div>
-          </div>
-
-          <button className="sound-toggle" onClick={() => {
+          <button className="sound-toggle" onClick={(e) => {
+            e.stopPropagation();
             if (playerRef.current) {
               if (isPlaying) playerRef.current.mute();
               else playerRef.current.unMute();
               setIsPlaying(!isPlaying);
             }
           }}>
-            {isPlaying ? '🔊 MUSIC ON' : '🔇 MUSIC OFF'}
+            {isPlaying ? 'SOUND ON' : 'SOUND OFF'}
           </button>
         </div>
       )}
