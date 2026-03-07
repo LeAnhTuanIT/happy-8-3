@@ -1,16 +1,4 @@
 export const wishes = [
-  // --- GIA ĐÌNH: BÀ & MẸ (Sâu sắc, Triân) ---
-  "Mẹ kính yêu, chúc Mẹ ngày 8/3 thật hạnh phúc, mạnh khỏe và mãi là điểm tựa bình yên nhất của con.",
-  "Gửi bà ngoại kính yêu, chúc bà luôn mạnh khỏe, vui vẻ và sống thật lâu bên con cháu.",
-  "Con chúc Mẹ ngày 8/3 rạng rỡ niềm vui. Cảm ơn Mẹ vì tất cả những hy sinh thầm lặng dành cho gia đình.",
-  "Chúc Bà nội luôn bình an, hạnh phúc và nhận được thật nhiều sự quan tâm của gia đình.",
-  "Mẹ là người phụ nữ tuyệt vời nhất thế gian. Chúc Mẹ một ngày 8/3 ngập tràn hoa và yêu thương.",
-  "Cầu chúc cho Mẹ của con luôn nở nụ cười trên môi, không chỉ ngày 8/3 mà là mọi ngày trong năm.",
-  "Gửi người phụ nữ đã mang con đến thế giới này: Con yêu Mẹ rất nhiều. Chúc Mẹ 8/3 thật trọn vẹn.",
-  "Chúc Bà luôn khỏe mạnh để chứng kiến con cháu trưởng thành. Bà là niềm tự hào của cả gia đình con.",
-  "Mẹ ơi, con mong Mẹ luôn được bình yên, ít lo toan và luôn hạnh phúc như chính nụ cười của Mẹ.",
-  "Chúc Mẹ ngày 8/3 thật đặc biệt, được yêu thương và nâng niu như những gì Mẹ xứng đáng nhận được.",
-
   // --- BẠN BÈ (Chân thành, Vui vẻ) ---
   "Chúc bạn một ngày 8/3 rạng rỡ, xinh đẹp và luôn ngập tràn niềm vui bên những người thân yêu!",
   "Mừng ngày 8/3! Chúc cô bạn thân của tôi luôn tự tin, kiên cường và yêu thương chính mình thật nhiều.",
@@ -45,5 +33,5 @@ export const wishes = [
   "Ngày 8/3 chúc bạn xinh đẹp như hoa, nhưng mong là đừng có 'chủ' sớm quá để anh em còn có cơ hội.",
   "Thay vì chúc bạn có người yêu, tớ chúc bạn luôn có một người sẵn sàng lắng nghe và chia sẻ mọi vui buồn.",
   "Chúc bạn 8/3 thật ý nghĩa. Hy vọng trong vô vàn lời chúc hôm nay, bạn sẽ dừng lại một chút ở dòng chữ này.",
-  "8/3 chúc bạn hạnh phúc. Nếu chưa tìm thấy hạnh phúc ở đâu, thử nhìn sang hướng người gửi link này xem sao?"
+  "8/3 chúc bạn hạnh phúc. Nếu chưa tìm thấy hạnh phúc ở đâu, thử nhìn sang hướng người gửi link này xem sao?",
 ];
