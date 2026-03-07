@@ -226,7 +226,7 @@ function App() {
               <div className="card-footer">
                 <p className="signature">Happy Women's Day</p>
                 <div className={`audio-visualizer-mini ${isPlaying ? "active" : ""}`}>
-                  {[...Array(11)].map((_, i) => (
+                  {[...Array(20)].map((_, i) => (
                     <div key={i} className="v-bar-mini"></div>
                   ))}
                 </div>
