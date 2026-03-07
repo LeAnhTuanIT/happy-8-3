@@ -384,3 +384,39 @@ body, html {
 }
 
 .close-story:hover { background: white; color: black; }
+
+/* --- PETALS (REFINED) --- */
+.petals-container-3d {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2000; /* Đảm bảo nổi lên trên tất cả các lớp khác */
+  overflow: hidden;
+}
+
+.petal-3d {
+  position: absolute;
+  background: #ffb7c5; /* Màu hồng cánh đào nhẹ */
+  border-radius: 100% 0 100% 0;
+  opacity: 0.3;
+  animation: fallRefined linear infinite;
+  box-shadow: 0 0 5px rgba(255, 183, 197, 0.5);
+}
+
+@keyframes fallRefined {
+  0% {
+    transform: translateY(-10vh) rotate(0deg) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.4;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg) translateX(100px);
+    opacity: 0;
+  }
+}
+
