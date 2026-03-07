@@ -148,11 +148,41 @@ body, html {
   to { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 
-.line-accent {
-  width: 30px;
-  height: 1px;
-  background: var(--gold);
+/* --- AUDIO VISUALIZER (Replaces Line Accent) --- */
+.audio-visualizer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: 20px;
   margin: 4rem auto 0;
+  width: fit-content;
+}
+
+.v-bar {
+  width: 2px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 1px;
+  transition: all 0.3s ease;
+  opacity: 0.3;
+}
+
+.audio-visualizer.active .v-bar {
+  opacity: 1;
+  box-shadow: 0 0 10px rgba(197, 160, 89, 0.4);
+  animation: barHeight 1.2s ease-in-out infinite;
+}
+
+.audio-visualizer.active .v-bar:nth-child(1) { animation-delay: 0.1s; height: 10px; }
+.audio-visualizer.active .v-bar:nth-child(2) { animation-delay: 0.3s; height: 18px; }
+.audio-visualizer.active .v-bar:nth-child(3) { animation-delay: 0.2s; height: 12px; }
+.audio-visualizer.active .v-bar:nth-child(4) { animation-delay: 0.4s; height: 20px; }
+.audio-visualizer.active .v-bar:nth-child(5) { animation-delay: 0.15s; height: 14px; }
+
+@keyframes barHeight {
+  0%, 100% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1.2); }
 }
 
 /* --- FOOTER --- */
@@ -232,6 +262,15 @@ body, html {
   font-weight: 300;
 }
 
+.story-highlight {
+  color: var(--gold);
+  font-weight: 400;
+  font-style: italic;
+  text-shadow: 0 0 10px rgba(197, 160, 89, 0.3);
+  border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+  padding-bottom: 2px;
+}
+
 .close-story {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -252,6 +291,135 @@ body, html {
 @keyframes storyFadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+.footer-left {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.gallery-trigger {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.3s;
+}
+
+.gallery-trigger:hover {
+  opacity: 1;
+  color: var(--gold);
+}
+
+/* Gallery Overlay */
+.gallery-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.95);
+  z-index: 1100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(20px);
+  animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-content {
+  width: 90%;
+  max-width: 800px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.gallery-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.gallery-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin: 10px 0 20px;
+  font-style: italic;
+}
+
+.gallery-line {
+  width: 50px;
+  height: 1px;
+  background: var(--gold);
+  margin: 0 auto;
+}
+
+.gallery-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 20px;
+  margin-bottom: 30px;
+}
+
+.gallery-scroll::-webkit-scrollbar {
+  width: 2px;
+}
+
+.gallery-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.gallery-scroll::-webkit-scrollbar-thumb {
+  background: var(--gold);
+}
+
+.gallery-item {
+  display: flex;
+  gap: 25px;
+  padding: 25px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.gallery-item:hover {
+  background: rgba(255, 255, 255, 0.03);
+  padding-left: 15px;
+}
+
+.wish-number {
+  font-size: 0.6rem;
+  color: var(--gold);
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.2em;
+  margin-top: 5px;
+}
+
+.wish-preview {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.close-gallery {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 1rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 200px;
+  margin: 0 auto;
+}
+
+.close-gallery:hover {
+  background: white;
+  color: black;
 }
 
 /* --- PETALS (REFINED) --- */

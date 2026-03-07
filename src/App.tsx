@@ -3,13 +3,21 @@ import "./App.css";
 import Petals from "./components/Petals";
 import { wishes } from "./data/wishes";
 
-const youtubePlaylist = ["ZzRKtUK-hlw", "RtcDdmP9pRg", "_jJi6k3CThM"];
+const youtubePlaylist = [
+  "ZzRKtUK-hlw",
+  "RtcDdmP9pRg",
+  "_jJi6k3CThM",
+  "nNTipHpP7so",
+  "ktyGNsNwab4",
+  "O-Ow7TW1wyg",
+  "7bLAWeHPihk",
+];
 
 const songStories: Record<string, { title: string; story: string }> = {
   "ZzRKtUK-hlw": {
     title: "Nơi Này Có Anh",
     story:
-      'Giai điệu này kể về một hành trình không xa xôi, nơi mà hạnh phúc không nằm ở đích đến mà nằm ở người đồng hành. Tiếng đàn piano nhẹ nhàng như những bước chân dạo quanh phố nhỏ, nhắc nhở chúng ta rằng chỉ cần có một người thấu hiểu ở bên, thì dù là nắng gắt hay mưa rào, mọi khoảnh khắc đều trở nên dịu dàng. "Anh Yêu Em" không chỉ là lời nói, mà còn là sự hiện diện, là sự ấm áp lan tỏa trong từng nhịp đập của trái tim.',
+      'Có những giai điệu sinh ra chỉ để dành riêng cho một người, dù người đó có nhận ra hay không. Bản nhạc này không chỉ là âm thanh, mà là những suy nghĩ chưa đặt tên, là cảm giác yên tâm đến lạ mỗi khi thấy bóng dáng ai đó giữa đám đông. Có một người vẫn luôn mượn tiếng đàn này để gửi đi một lời nhắn thầm kín: <span class="story-highlight">"Thế giới của tớ, thật may vì có cậu."</span>',
   },
   RtcDdmP9pRg: {
     title: "Hơn Cả Yêu",
@@ -19,7 +27,27 @@ const songStories: Record<string, { title: string; story: string }> = {
   _jJi6k3CThM: {
     title: "Phép Màu",
     story:
-      'Giữa thế giới hối hả, việc gặp được một người có thể làm bừng sáng tâm hồn mình chính là một "phép màu" đích thực. Giai điệu piano trong trẻo như những tia nắng đầu tiên xuyên qua kẽ lá, kể về niềm vui thuần khiết khi ta nhận ra mình không hề đơn độc. Mỗi người phụ nữ chính là một phép màu rạng rỡ nhất.',
+      "Giữa thế giới hối hả, việc gặp được một người có thể làm bừng sáng tâm hồn mình chính là một \"phép màu\" đích thực. Giai điệu piano trong trẻo như những tia nắng đầu tiên xuyên qua kẽ lá, kể về niềm vui thuần khiết khi ta nhận ra mình không hề đơn độc. Mỗi người phụ nữ chính là một phép màu rạng rỡ nhất.",
+  },
+  nNTipHpP7so: {
+    title: "Ngày Em Đẹp Nhất",
+    story:
+      'Bản nhạc này tôn vinh vẻ đẹp của người phụ nữ trong khoảnh khắc rạng rỡ nhất. Giai điệu piano ngân vang như lời nhắc nhở rằng, dù thời gian có trôi đi, vẻ đẹp tâm hồn và nụ cười của "Em" vẫn luôn là điều tuyệt vời nhất. Ngày em đẹp nhất chính là mọi ngày khi em tự tin là chính mình.',
+  },
+  ktyGNsNwab4: {
+    title: "Em Trong Mắt Tôi",
+    story:
+      "Giai điệu này là một lời ca ngợi vẻ đẹp dịu dàng nhưng đầy sức sống của người phụ nữ Việt. Tiếng đàn piano mang đến sự thanh thoát, gợi nhớ hình ảnh tà áo dài và nụ cười không cần tô điểm. Câu chuyện đằng sau là sự trân trọng những nét đẹp giản dị, tinh khôi nhưng đầy sức hút.",
+  },
+  "O-Ow7TW1wyg": {
+    title: "Là Con Gái Thật Tuyệt",
+    story:
+      'Bản nhạc mang giai điệu vui tươi, kể về niềm tự hào khi được là một người phụ nữ - được yêu thương, làm đẹp và theo đuổi đam mê. Đây là món quà nhắc nhở mỗi cô gái hãy luôn yêu chiều bản thân và sống một cuộc đời rực rỡ sắc màu vì "làm con gái thật tuyệt"!',
+  },
+  "7bLAWeHPihk": {
+    title: "Gửi Anh Xa Nhớ",
+    story:
+      "Một bản nhạc đầy chất thơ kể về nỗi lòng của người phụ nữ luôn hướng về người thương dù cách xa muôn trùng. Câu chuyện đằng sau là sự thủy chung, kiên cường và lòng bao dung - những đức tính cao đẹp tạo nên sức mạnh gắn kết mọi khoảng cách địa lý.",
   },
 };
 
@@ -99,7 +127,7 @@ function App() {
   useEffect(() => {
     if (hasStarted) {
       getNextWish();
-      const interval = setInterval(getNextWish, 10000);
+      const interval = setInterval(getNextWish, 30000);
       return () => clearInterval(interval);
     }
   }, [hasStarted]);
@@ -154,28 +182,14 @@ function App() {
                 {currentWish}
               </p>
             </div>
-            <div className="line-accent"></div>
-          </div>
-
-          {showStory && (
-            <div className="story-overlay" onClick={() => setShowStory(false)}>
-              <div className="story-card" onClick={(e) => e.stopPropagation()}>
-                <span className="story-label">Behind the melody</span>
-                <h3 className="story-song-title">
-                  {songStories[selectedVideoId]?.title}
-                </h3>
-                <p className="story-content">
-                  {songStories[selectedVideoId]?.story}
-                </p>
-                <button
-                  className="close-story"
-                  onClick={() => setShowStory(false)}
-                >
-                  Close
-                </button>
-              </div>
+            <div className={`audio-visualizer ${isPlaying ? "active" : ""}`}>
+              <div className="v-bar"></div>
+              <div className="v-bar"></div>
+              <div className="v-bar"></div>
+              <div className="v-bar"></div>
+              <div className="v-bar"></div>
             </div>
-          )}
+          </div>
 
           <div className="footer-minimal">
             <span onClick={handleSecretClick} style={{ cursor: "pointer" }}>
@@ -194,6 +208,29 @@ function App() {
               {isPlaying ? "MUTE AUDIO" : "PLAY AUDIO"}
             </div>
           </div>
+
+          {showStory && (
+            <div className="story-overlay" onClick={() => setShowStory(false)}>
+              <div className="story-card" onClick={(e) => e.stopPropagation()}>
+                <span className="story-label">Behind the melody</span>
+                <h3 className="story-song-title">
+                  {songStories[selectedVideoId]?.title}
+                </h3>
+                <p
+                  className="story-content"
+                  dangerouslySetInnerHTML={{
+                    __html: songStories[selectedVideoId]?.story || "",
+                  }}
+                ></p>
+                <button
+                  className="close-story"
+                  onClick={() => setShowStory(false)}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
