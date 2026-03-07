@@ -22,16 +22,4 @@ export const wishes = [
   "Chúc các chị em luôn tràn đầy năng lượng tích cực và luôn mỉm cười trước mọi thách thức.",
   "Bạn là nguồn cảm hứng cho sự sáng tạo và thành công của nhóm. Chúc bạn ngày 8/3 tuyệt vời!",
   "Chúc cô đồng nghiệp của tôi ngày càng thăng tiến trong sự nghiệp và viên mãn trong cuộc sống.",
-
-  // --- SUBTLE CRUSH / JOKE (Tinh tế, Mập mờ an toàn) ---
-  "8/3 chúc bạn luôn rạng rỡ, và hy vọng nụ cười của bạn cũng dành một chút cho người đang gửi link này.",
-  "Ngày 8/3 chúc phái đẹp luôn tự tin. Riêng bạn, chỉ cần là chính mình thôi cũng đủ làm ai đó xao xuyến rồi.",
-  "Chúc bạn nhận được thật nhiều hoa, nhưng đừng quên có một người vẫn luôn âm thầm ủng hộ bạn từ xa nhé.",
-  "8/3 này chúc bạn nhận được món quà bất ngờ nhất, ví dụ như một tin nhắn từ người mà bạn cũng đang mong đợi?",
-  "Nghe nói nụ cười của phụ nữ là liều thuốc bổ, chúc bạn 8/3 cười thật nhiều để tớ được... 'bổ' lây nhé.",
-  "Chúc bạn 8/3 ngập tràn quà cáp, nếu nhiều quá không có chỗ để thì cứ gửi tạm vào tim tớ đây này.",
-  "Ngày 8/3 chúc bạn xinh đẹp như hoa, nhưng mong là đừng có 'chủ' sớm quá để anh em còn có cơ hội.",
-  "Thay vì chúc bạn có người yêu, tớ chúc bạn luôn có một người sẵn sàng lắng nghe và chia sẻ mọi vui buồn.",
-  "Chúc bạn 8/3 thật ý nghĩa. Hy vọng trong vô vàn lời chúc hôm nay, bạn sẽ dừng lại một chút ở dòng chữ này.",
-  "8/3 chúc bạn hạnh phúc. Nếu chưa tìm thấy hạnh phúc ở đâu, thử nhìn sang hướng người gửi link này xem sao?",
 ];
