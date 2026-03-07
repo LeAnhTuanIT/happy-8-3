@@ -101,7 +101,7 @@ function App() {
         <div className="dreamy-content">
           <Petals />
           <div className="wish-card">
-            <h1 className="main-title">Dear Women,</h1>
+            <h1 className="main-title">Gửi bạn,</h1>
             <div className="wish-display">
               <p className="wish-sentence" key={currentWish}>
                 {currentWish}
