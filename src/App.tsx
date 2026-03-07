@@ -1,12 +1,11 @@
 import { useState, useEffect, useRef } from 'react'
 import './App.css'
 import Petals from './components/Petals'
+import SparkleTrail from './components/SparkleTrail'
 import { wishes } from './data/wishes'
 
 const youtubePlaylist = [
-  'ZzRKtUK-hlw',
-  'RtcDdmP9pRg',
-  '_jJi6k3CThM'
+  'ZzRKtUK-hlw', 'RtcDdmP9pRg', '_jJi6k3CThM'
 ];
 
 declare global {
@@ -18,9 +17,10 @@ declare global {
 
 function App() {
   const [currentWish, setCurrentWish] = useState<string>('')
-  const [, setUsedIndices] = useState<number[]>([]) // Sửa usedIndices thành _ hoặc bỏ đi vì logic dùng prev
+  const [, setUsedIndices] = useState<number[]>([])
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
   const [hasStarted, setHasStarted] = useState<boolean>(false)
+  const [isOpening, setIsOpening] = useState<boolean>(false)
   const [selectedVideoId, setSelectedVideoId] = useState<string>('')
   const playerRef = useRef<any>(null);
 
@@ -74,21 +74,34 @@ function App() {
   }, [hasStarted]);
 
   const startExperience = () => {
-    setHasStarted(true);
-    setIsPlaying(true);
-    if (playerRef.current) {
-      playerRef.current.unMute();
-      playerRef.current.playVideo();
-    }
+    setIsOpening(true);
+    // Chờ animation mở thư chạy xong rồi mới chuyển màn hình
+    setTimeout(() => {
+      setHasStarted(true);
+      setIsPlaying(true);
+      if (playerRef.current) {
+        playerRef.current.unMute();
+        playerRef.current.playVideo();
+      }
+    }, 1500);
   }
 
   return (
     <div className="app-container">
+      <SparkleTrail />
+
       {!hasStarted && (
-        <div className="welcome-screen" onClick={startExperience}>
-          <div className="heart-icon">♥</div>
-          <div className="welcome-text">MÓN QUÀ GỬI TRAO</div>
-          <div className="click-to-open">NHẤN ĐỂ MỞ</div>
+        <div className={`welcome-screen ${isOpening ? 'opening' : ''}`} onClick={startExperience}>
+          <div className="envelope-wrapper">
+            <div className={`envelope ${isOpening ? 'open' : ''}`}>
+              <div className="flap"></div>
+              <div className="body"></div>
+              <div className="letter">
+                <div className="heart-seal">♥</div>
+              </div>
+            </div>
+            {!isOpening && <div className="open-hint">NHẤN ĐỂ MỞ THƯ 💌</div>}
+          </div>
         </div>
       )}
 
@@ -104,7 +117,9 @@ function App() {
             <h1 className="main-title">Gửi bạn,</h1>
             <div className="wish-display">
               <p className="wish-sentence" key={currentWish}>
-                {currentWish}
+                {currentWish.split(' ').map((word, i) => (
+                  <span key={i} style={{ animationDelay: `${i * 0.1}s` }}>{word}&nbsp;</span>
+                ))}
               </p>
             </div>
             <div className="soft-divider"></div>
