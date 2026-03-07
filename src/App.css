@@ -177,6 +177,83 @@ body, html {
 
 .audio-control-clean:hover { opacity: 1; }
 
+/* Story Overlay */
+.story-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(15px);
+  animation: storyFadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.story-card {
+  max-width: 500px;
+  width: 90%;
+  padding: 50px 40px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.story-label {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 25px;
+  opacity: 0.8;
+}
+
+.story-song-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 400;
+  font-style: italic;
+  color: #fff;
+  margin-bottom: 30px;
+}
+
+.story-content {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  line-height: 2;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+
+.close-story {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.8rem 2rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.close-story:hover {
+  background: white;
+  color: black;
+}
+
+@keyframes storyFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* --- PETALS (REFINED) --- */
 .petals-container-3d {
   position: fixed;
