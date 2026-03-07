@@ -27,7 +27,7 @@ const songStories: Record<string, { title: string; story: string }> = {
   _jJi6k3CThM: {
     title: "Phép Màu",
     story:
-      "Giữa thế giới hối hả, việc gặp được một người có thể làm bừng sáng tâm hồn mình chính là một \"phép màu\" đích thực. Giai điệu piano trong trẻo như những tia nắng đầu tiên xuyên qua kẽ lá, kể về niềm vui thuần khiết khi ta nhận ra mình không hề đơn độc. Mỗi người phụ nữ chính là một phép màu rạng rỡ nhất.",
+      'Giữa thế giới hối hả, việc gặp được một người có thể làm bừng sáng tâm hồn mình chính là một "phép màu" đích thực. Giai điệu piano trong trẻo như những tia nắng đầu tiên xuyên qua kẽ lá, kể về niềm vui thuần khiết khi ta nhận ra mình không hề đơn độc. Mỗi người phụ nữ chính là một phép màu rạng rỡ nhất.',
   },
   nNTipHpP7so: {
     title: "Ngày Em Đẹp Nhất",
