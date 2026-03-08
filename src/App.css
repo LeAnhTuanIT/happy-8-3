@@ -159,6 +159,16 @@ body, html {
   position: absolute;
   inset: 0;
   z-index: 1;
+  transition: opacity 2s ease;
+}
+
+.video-background.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.video-background.visible {
+  opacity: 1;
 }
 
 #youtube-player {
