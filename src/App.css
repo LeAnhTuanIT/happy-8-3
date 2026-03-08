@@ -229,7 +229,7 @@ body, html {
 }
 
 .wax-seal::after {
-  content: '8';
+  content: 'TLA';
   position: absolute;
   inset: 0;
   display: flex;
@@ -238,6 +238,7 @@ body, html {
   font-family: 'Playfair Display', serif;
   color: rgba(0,0,0,0.4);
   font-weight: bold;
+  font-size: 0.6rem;
 }
 
 .salutation {
