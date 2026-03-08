@@ -167,7 +167,7 @@ function App() {
   useEffect(() => {
     if (hasStarted) {
       getNextWish();
-      const interval = setInterval(getNextWish, 30000);
+      const interval = setInterval(getNextWish, 15000);
       return () => clearInterval(interval);
     }
   }, [hasStarted]);
